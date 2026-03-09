@@ -1,5 +1,47 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a9e27c03d411d2fca01cc7410c24c97cd77cb539"
+    },
+    "com.hsnzkg.eventbus": {
+      "version": "https://github.com/hsnzkg/EventBus.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e1b4bc365faf70aa6702add0f9d58f6f9d17b4b8"
+    },
+    "com.hsnzkg.finitestatemachine": {
+      "version": "https://github.com/hsnzkg/FiniteStateMachine.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6d7930d83c18e4cbf93423ece0cd816be07359bf"
+    },
+    "com.hsnzkg.storage": {
+      "version": "https://github.com/hsnzkg/Storage.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e7efd0b4be817dc5f379568ea99ccfc9cb376666"
+    },
+    "com.unity.addressables": {
+      "version": "1.19.19",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.scriptablebuildpipeline": "1.19.6",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "2.5.2",
       "depth": 0,
@@ -36,7 +78,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.31",
+      "version": "3.0.39",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -62,6 +104,13 @@
     },
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.20.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -96,7 +145,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -126,7 +175,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.4",
+      "version": "1.9.10",
       "depth": 0,
       "source": "registry",
       "dependencies": {
