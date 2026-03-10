@@ -4,6 +4,8 @@
     "com.hsnzkg.eventbus": "https://github.com/hsnzkg/EventBus.git",
     "com.hsnzkg.finitestatemachine": "https://github.com/hsnzkg/FiniteStateMachine.git",
     "com.hsnzkg.storage": "https://github.com/hsnzkg/Storage.git",
+    "com.unity.2d.sprite": "1.0.0",
+    "com.unity.2d.spriteshape": "7.0.7",
     "com.unity.addressables": "1.19.19",
     "com.unity.collab-proxy": "2.5.2",
     "com.unity.feature.development": "1.0.1",

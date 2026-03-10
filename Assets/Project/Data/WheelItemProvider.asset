@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1890f9bcae6e45ccb47fbf36b770f0c7, type: 3}
+  m_Name: WheelItemProvider
+  m_EditorClassIdentifier: 
+  m_zones:
+  - Type: 0
+    Entries:
+    - Id: 0
+      Sprite: {fileID: 0}
+      ProvidableAmounts: 0100000003000000
+    - Id: 1
+      Sprite: {fileID: 0}
+      ProvidableAmounts: 0100000003000000
+  - Type: 1
+    Entries:
+    - Id: 1
+      Sprite: {fileID: 0}
+      ProvidableAmounts: 0100000005000000
+  - Type: 2
+    Entries:
+    - Id: 2
+      Sprite: {fileID: 0}
+      ProvidableAmounts: 0d00000019000000
+  m_count: 8
+  m_seed: 1

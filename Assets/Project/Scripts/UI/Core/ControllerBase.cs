@@ -1,0 +1,20 @@
+﻿namespace Project.Scripts.UI.Core
+{
+    public abstract class ControllerBase<TView, TModel> : IController
+        where TView : IView
+        where TModel : IModel
+    {
+        protected TView View { get; }
+        protected TModel Model { get; }
+
+        protected ControllerBase(TView view, TModel model)
+        {
+            View = view;
+            Model = model;
+        }
+
+        public virtual void Initialize()
+        {
+        }
+    }
+}
