@@ -2,23 +2,31 @@
 
 namespace Project.Scripts.UI.Core
 {
-    public abstract class SystemBase<TView, TModel, TController> : MonoBehaviour where TView : ViewBase where TModel : IModel where TController : ControllerBase<TView, TModel>
+    public abstract class SystemBase<TModel,TView,TController> : MonoBehaviour where TView : ViewBase where TModel : IModel where TController : ControllerBase<TView, TModel>
     {
-        [SerializeField]
-        private TView m_view;
-
-        protected TController Controller { get; private set; }
-        protected TModel Model { get; private set; }
+        public TView View;
+        public TController Controller { get; private set; }
+        public TModel Model { get; private set; }
 
         protected virtual void Awake()
         {
             Build();
         }
 
+        private void OnEnable()
+        {
+            Controller.Enable();
+        }
+
+        private void OnDisable()
+        {
+            Controller.Disable();
+        }
+
         protected virtual void Build()
         {
             Model = CreateModel();
-            Controller = CreateController(m_view, Model);
+            Controller = CreateController(View, Model);
             Controller.Initialize();
         }
 

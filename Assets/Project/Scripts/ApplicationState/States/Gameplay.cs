@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using FiniteStateMachine.Runtime;
 using Project.Scripts.Addressable;
+using Project.Scripts.Game.WheelGame.Data.Provider;
 using Project.Scripts.Storage;
 using Storage.Runtime;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -23,14 +24,13 @@ namespace Project.Scripts.ApplicationState.States
 
         private async UniTaskVoid LoadSequence()
         {
-            //await LoadAssets();
+            await LoadAssets();
             await LoadScene();
         }
 
         private UniTask LoadAssets()
         {
-            throw new NotImplementedException();
-            //return AddressableManager.LoadAssetAsync<InputManagerSettings>("Assets/FloorRush/Data/InputManagerSettings.asset").OnComplete(OnInputSettingsLoaded).ToUniTask();
+            return AddressableManager.LoadAssetAsync<IWheelItemCollectionProvider>("Assets/Project/Data/WheelItemProvider.asset").OnComplete(OnProviderLoaded).ToUniTask();
         }
 
         private UniTask LoadScene()
@@ -47,6 +47,11 @@ namespace Project.Scripts.ApplicationState.States
 
         private void OnGameplaySceneLoaded(SceneInstance obj)
         {
+        }
+
+        private void OnProviderLoaded(IWheelItemCollectionProvider obj)
+        {
+            Storage<GameplayStorage>.Instance.WheelItemCollectionProvider = obj;
         }
     }
 }

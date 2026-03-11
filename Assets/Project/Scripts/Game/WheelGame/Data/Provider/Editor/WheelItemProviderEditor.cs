@@ -34,7 +34,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider.Editor
                             var result = results[i];
 
                             if (result.Item != null)
-                                Debug.Log($"Item[{i}]: Id = {result.Item.Id} Amount = {result.Amount}");
+                                Debug.Log($"Item[{i}]: Id = {result.Item.Type} Amount = {result.Amount}");
                             else
                                 Debug.Log($"Item[{i}]: null (Empty)");
                         }

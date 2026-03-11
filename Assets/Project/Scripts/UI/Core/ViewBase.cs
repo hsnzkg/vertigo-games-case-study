@@ -1,13 +1,10 @@
-﻿using System;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Project.Scripts.UI.Core
 {
     public abstract class ViewBase : MonoBehaviour, IView
     {
-        [SerializeField]
-        protected RectTransform Root;
+        public RectTransform Root;
 
         protected virtual void Awake()
         {

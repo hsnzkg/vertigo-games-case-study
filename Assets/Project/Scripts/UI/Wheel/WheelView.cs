@@ -1,7 +1,10 @@
 using System;
 using DG.Tweening;
+using Project.Scripts.Game.WheelGame.Data.Provider;
 using Project.Scripts.UI.Core;
+using Project.Scripts.UI.WheelItem;
 using Project.Scripts.Utility;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,19 +14,22 @@ namespace Project.Scripts.UI.Wheel
     public class WheelView : ViewBase
     {
         [SerializeField]
-        private GameObject m_itemPrefab;
+        private WheelItemSystem m_itemPrefab;
 
         [SerializeField]
         private RectTransform m_wheelRect;
+
+        [SerializeField]
+        private Image m_wheelImage;
+
+        [SerializeField]
+        private TextMeshProUGUI m_wheelTitle;
 
         [SerializeField]
         private Button m_spinButton;
 
         [SerializeField]
         private int m_itemCount;
-
-        [SerializeField]
-        private RectTransform[] m_itemTargets;
 
         [SerializeField]
         private float m_radius;
@@ -35,12 +41,16 @@ namespace Project.Scripts.UI.Wheel
         private Ease m_rotateEase;
 
         [SerializeField]
-        private int m_maxTurnCount;
+        private int m_maxExtraTurnCount;
 
+        [SerializeField]
+        private WheelZoneBlock[] m_zoneBlocks;
+
+        private WheelItemSystem[] m_itemTargets;
         private Vector2 m_itemAABBMag;
         private Tween m_rotateTween;
         private float m_currentAngle;
-        public event Action RotateComplete;
+        public event Action SpinComplete;
         public event Action SpinPress;
 
         private void OnDrawGizmos()
@@ -74,7 +84,7 @@ namespace Project.Scripts.UI.Wheel
 
         protected override void Initialize()
         {
-            m_itemTargets = new RectTransform[m_itemCount];
+            m_itemTargets = new WheelItemSystem[m_itemCount];
             CreateItemElements();
             m_currentAngle = m_wheelRect.localEulerAngles.z;
             FitItemTargets();
@@ -98,28 +108,28 @@ namespace Project.Scripts.UI.Wheel
             }
         }
 
-        private void SetButtonInteractivity(bool value)
+        public void SetButtonInteractivity(bool value)
         {
             m_spinButton.interactable = value;
         }
-        
+
         private void OnSpinPressed()
         {
             SpinPress?.Invoke();
         }
-        
+
         private void CreateItemElements()
         {
             for (int i = 0; i < m_itemCount; i++)
             {
-                GameObject itemElement = Instantiate(m_itemPrefab, m_wheelRect.transform);
-                RectTransform itemRect = itemElement.GetComponent<RectTransform>();
+                WheelItemSystem itemElement = Instantiate(m_itemPrefab, m_wheelRect.transform);
+                RectTransform itemRect = itemElement.View.Root;
 
                 Vector3 lossy = itemRect.lossyScale;
                 Vector2 size = itemRect.rect.size;
                 m_itemAABBMag = new Vector2(size.x * lossy.x, size.y * lossy.y);
 
-                m_itemTargets[i] = itemRect;
+                m_itemTargets[i] = itemElement;
             }
         }
 
@@ -139,11 +149,31 @@ namespace Project.Scripts.UI.Wheel
                 float x = Mathf.Cos(rad) * m_radius;
                 float y = Mathf.Sin(rad) * m_radius;
 
-                m_itemTargets[i].anchoredPosition = center + new Vector2(x, y);
+                m_itemTargets[i].View.Root.anchoredPosition = center + new Vector2(x, y);
 
-                float rotation = angle + 180f;
-                m_itemTargets[i].localRotation = Quaternion.Euler(0, 0, rotation);
+                float rotation = angle + 270f;
+                m_itemTargets[i].View.Root.localRotation = Quaternion.Euler(0, 0, rotation);
             }
+        }
+
+        private WheelZoneBlock GetZoneBlock(WheelZoneType type)
+        {
+            foreach (WheelZoneBlock block in m_zoneBlocks)
+            {
+                if (block.Zone == type) return block;
+            }
+
+            return default;
+        }
+
+        private void ChangeWheelImage(Sprite image)
+        {
+            m_wheelImage.sprite = image;
+        }
+
+        private void ChangeWheelTitle(string prefix)
+        {
+            m_wheelTitle.text = $"{prefix} Spin";
         }
 
         public void Rotate(float targetDegree, int extraSpinCount = -1, SpinDirection direction = SpinDirection.Clockwise)
@@ -155,8 +185,7 @@ namespace Project.Scripts.UI.Wheel
 
             if (extraSpinCount == -1)
             {
-                extraSpinCount = Random.Range(1, m_maxTurnCount + 1);
-                Debug.Log(extraSpinCount);
+                extraSpinCount = Random.Range(1, m_maxExtraTurnCount + 1);
             }
 
             float dirSign = (int)direction;
@@ -174,8 +203,9 @@ namespace Project.Scripts.UI.Wheel
                 .SetEase(m_rotateEase)
                 .OnComplete(() =>
                 {
-                    m_currentAngle = finalAngle;
-                    RotateComplete?.Invoke();
+                    m_currentAngle = finalAngle.NormalizeAngle();
+                    m_wheelRect.localEulerAngles = new Vector3(0, 0, m_currentAngle);
+                    SpinComplete?.Invoke();
                 });
             m_rotateTween.Play();
         }
@@ -184,6 +214,20 @@ namespace Project.Scripts.UI.Wheel
         {
             float targetDegree = 360f / m_itemTargets.Length * index;
             Rotate(targetDegree, extraSpinCount, direction);
+        }
+
+        public void ChangeItem(int index, WheelItemResult wheelItemResult)
+        {
+            m_itemTargets[index]
+                .Controller
+                .ChangeItem(wheelItemResult);
+        }
+
+        public void ChangeWheelZone(WheelZoneType zoneType)
+        {
+            WheelZoneBlock block = GetZoneBlock(zoneType);
+            ChangeWheelImage(block.Sprite);
+            ChangeWheelTitle(block.ZonePrefix);
         }
     }
 }

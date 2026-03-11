@@ -63,7 +63,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
             {
                 int randomIndex = m_random.Next(0, targetZone.Entries.Length);
                 WheelItemEntry entry = targetZone.Entries[randomIndex];
-                m_itemBuffer[i] = new WheelItemResult(new WheelItemBase(entry.Id, entry.Sprite),entry.ProvidableAmounts[m_random.Next(0,entry.ProvidableAmounts.Length)]);
+                m_itemBuffer[i] = new WheelItemResult(new WheelItemBase(entry.Type, entry.Sprite,entry.Quality),entry.ProvidableAmounts[m_random.Next(0,entry.ProvidableAmounts.Length)]);
             }
         }
 

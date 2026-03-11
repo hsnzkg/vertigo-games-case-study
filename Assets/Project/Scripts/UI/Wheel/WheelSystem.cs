@@ -2,7 +2,7 @@
 
 namespace Project.Scripts.UI.Wheel
 {
-    public class WheelSystem : SystemBase<WheelView, WheelModel, WheelController>
+    public class WheelSystem : SystemBase<WheelModel,WheelView,WheelController>
     {
         protected override WheelModel CreateModel()
         {

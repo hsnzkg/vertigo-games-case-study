@@ -2,8 +2,8 @@
 {
     public enum WheelZoneType
     {
-        BRONZE,
-        SILVER,
-        GOLD
+        DEFAULT,
+        SAFE,
+        SUPER
     }
 }

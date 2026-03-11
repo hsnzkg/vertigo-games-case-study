@@ -16,5 +16,13 @@
         public virtual void Initialize()
         {
         }
+
+        public virtual void Enable()
+        {
+        }
+
+        public virtual void Disable()
+        {
+        }
     }
 }

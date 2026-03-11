@@ -1,4 +1,5 @@
 ﻿using System;
+using Project.Scripts.Game.WheelGame.Data.Item;
 using UnityEngine;
 
 namespace Project.Scripts.Game.WheelGame.Data.Provider
@@ -6,8 +7,9 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
     [Serializable]
     public struct WheelItemEntry
     {
-        public int Id;
-        public Texture2D Sprite;
+        public ItemType Type;
+        public Sprite Sprite;
+        public ItemQuality Quality;
         public int[] ProvidableAmounts;
     }
 
