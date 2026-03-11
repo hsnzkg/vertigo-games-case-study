@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.UI.Wheel.Data.Provider
+﻿namespace Project.Scripts.Game.WheelGame.Data.Provider
 {
     public enum WheelZoneType
     {

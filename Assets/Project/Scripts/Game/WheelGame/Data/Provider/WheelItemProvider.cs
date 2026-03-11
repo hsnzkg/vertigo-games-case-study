@@ -1,8 +1,8 @@
-using Project.Scripts.UI.Wheel.Data.Item;
+using Project.Scripts.Game.WheelGame.Data.Item;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Project.Scripts.UI.Wheel.Data.Provider
+namespace Project.Scripts.Game.WheelGame.Data.Provider
 {
     [CreateAssetMenu(fileName = "WheelItemProvider", menuName = "Project/WheelItemProvider", order = 0)]
     public class WheelItemProvider : ScriptableObject, IWheelItemCollectionProvider

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Project.Scripts.UI.Wheel.Data.Provider
+namespace Project.Scripts.Game.WheelGame.Data.Provider
 {
     [Serializable]
     public struct WheelItemEntry

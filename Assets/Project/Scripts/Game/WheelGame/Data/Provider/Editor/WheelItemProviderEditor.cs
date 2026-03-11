@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Project.Scripts.UI.Wheel.Data.Provider.Editor
+namespace Project.Scripts.Game.WheelGame.Data.Provider.Editor
 {
     [CustomEditor(typeof(WheelItemProvider))]
     public class WheelItemProviderEditor : UnityEditor.Editor

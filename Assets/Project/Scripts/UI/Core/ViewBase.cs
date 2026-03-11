@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using DG.Tweening;
+using UnityEngine;
 
 namespace Project.Scripts.UI.Core
 {
@@ -6,6 +8,30 @@ namespace Project.Scripts.UI.Core
     {
         [SerializeField]
         protected RectTransform Root;
+
+        protected virtual void Awake()
+        {
+            Initialize();
+        }
+
+        protected virtual void OnEnable()
+        {
+            
+        }
+
+        protected virtual void OnDisable()
+        {
+            
+        }
+
+        protected virtual void OnDestroy()
+        {
+        }
+
+        protected virtual void Initialize()
+        {
+            
+        }
 
         public virtual void Open()
         {

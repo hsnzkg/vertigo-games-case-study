@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.UI.Wheel.Data.Item
+namespace Project.Scripts.Game.WheelGame.Data.Item
 {
     public interface IWheelItem
     {

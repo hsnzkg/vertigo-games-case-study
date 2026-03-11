@@ -10,7 +10,6 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Initialize()
         {
-            View.FitItemTargets();
         }
     }
 }

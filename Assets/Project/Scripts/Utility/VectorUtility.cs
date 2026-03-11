@@ -66,5 +66,12 @@ namespace Project.Scripts.Utility
             vector.z = vector.z > 0f ? 1f : vector.z < 0f ? -1f : 0f;
             return vector;
         }
+        
+        public static float NormalizeAngle(this float angle)
+        {
+            angle %= 360f;
+            if (angle < 0) angle += 360f;
+            return angle;
+        }
     }
 }

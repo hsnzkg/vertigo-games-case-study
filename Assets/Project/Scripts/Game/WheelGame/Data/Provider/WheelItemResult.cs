@@ -1,6 +1,6 @@
-﻿using Project.Scripts.UI.Wheel.Data.Item;
+﻿using Project.Scripts.Game.WheelGame.Data.Item;
 
-namespace Project.Scripts.UI.Wheel.Data.Provider
+namespace Project.Scripts.Game.WheelGame.Data.Provider
 {
     public struct WheelItemResult
     {
