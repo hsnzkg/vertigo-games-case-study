@@ -24,5 +24,10 @@
         public virtual void Disable()
         {
         }
+
+        public virtual void Destroy()
+        {
+            
+        }
     }
 }

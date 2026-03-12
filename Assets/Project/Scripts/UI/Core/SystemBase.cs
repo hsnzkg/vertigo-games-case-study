@@ -23,6 +23,11 @@ namespace Project.Scripts.UI.Core
             Controller.Disable();
         }
 
+        private void OnDestroy()
+        {
+            Controller.Destroy();
+        }
+
         protected virtual void Build()
         {
             Model = CreateModel();

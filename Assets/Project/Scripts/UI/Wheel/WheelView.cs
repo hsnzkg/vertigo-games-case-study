@@ -117,7 +117,7 @@ namespace Project.Scripts.UI.Wheel
             }
         }
 
-        public void SetButtonInteractivity(bool value)
+        public void SetSpinButtonInteractivity(bool value)
         {
             m_spinButton.interactable = value;
         }
@@ -126,7 +126,6 @@ namespace Project.Scripts.UI.Wheel
         {
             m_withdrawButton.interactable = value;
         }
-
 
         private void OnSpinPressed()
         {

@@ -11,10 +11,12 @@ namespace Project.Scripts.UI.Wheel
     {
         private readonly EventBind<EPrepareGame> m_prepareGameBind;
         private readonly EventBind<EGameStart> m_gameStartBind;
+        private readonly EventBind<EBombExplode> m_bombExplode;
         public WheelController(WheelView view, WheelModel model) : base(view, model)
         {
             m_prepareGameBind = new EventBind<EPrepareGame>(OnGamePrepare);
             m_gameStartBind = new EventBind<EGameStart>(OnGameStart);
+            m_bombExplode = new EventBind<EBombExplode>(OnBombExplode);
         }
 
         public override void Enable()
@@ -28,6 +30,7 @@ namespace Project.Scripts.UI.Wheel
 
             EventBus<EPrepareGame>.Register(m_prepareGameBind);
             EventBus<EGameStart>.Register(m_gameStartBind);
+            EventBus<EBombExplode>.Register(m_bombExplode);
         }
 
         public override void Disable()
@@ -41,6 +44,7 @@ namespace Project.Scripts.UI.Wheel
             
             EventBus<EPrepareGame>.Unregister(m_prepareGameBind);
             EventBus<EGameStart>.Unregister(m_gameStartBind);
+            EventBus<EBombExplode>.Unregister(m_bombExplode);
         }
 
         private void OnWheelItemsChanged(IReadOnlyList<WheelItemResult> result)
@@ -53,6 +57,7 @@ namespace Project.Scripts.UI.Wheel
 
         private void OnGamePrepare(EPrepareGame obj)
         {
+            View.SetSpinButtonInteractivity(true);
             Model.CurrentZoneType.Value = obj.ZoneType;
             for (int i = 0; i < obj.Result.Length; i++)
             {
@@ -69,12 +74,13 @@ namespace Project.Scripts.UI.Wheel
         private void OnSpinPressed()
         {
             View.SetWithDrawButtonInteractivity(false);
-            View.SetButtonInteractivity(false);
+            View.SetSpinButtonInteractivity(false);
             EventBus<ESpinPressed>.Raise(new ESpinPressed());
         }
 
         private void OnWithDrawPressed()
         {
+            Model.CurrentZoneType.Value = WheelZoneType.DEFAULT;
         }
 
         private void OnGameStart(EGameStart obj)
@@ -84,8 +90,14 @@ namespace Project.Scripts.UI.Wheel
 
         private void OnSpinCompleted()
         {
-            View.SetButtonInteractivity(true);
+            View.SetSpinButtonInteractivity(true);
             EventBus<ESpinCompleted>.Raise(new ESpinCompleted());
+        }
+
+        private void OnBombExplode()
+        {
+            View.SetSpinButtonInteractivity(false);
+            View.SetWithDrawButtonInteractivity(false);
         }
     }
 }

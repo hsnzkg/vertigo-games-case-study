@@ -21,27 +21,30 @@
             private WheelItemResult m_currentSelected;
             private EventBind<ESpinPressed> m_spinBind;
             private EventBind<ESpinCompleted> m_spinCompleted;
-
+            private EventBind<EGiveUp> m_giveUpBind;
+ 
             private void Awake()
             {
                 Initialize();
             }
-
+ 
             private void Start()
             {
                 PrepareGame();
             }
-
+ 
             private void OnEnable()
             {
                 EventBus<ESpinPressed>.Register(m_spinBind);
                 EventBus<ESpinCompleted>.Register(m_spinCompleted);
+                EventBus<EGiveUp>.Register(m_giveUpBind);
             }
-
+ 
             private void OnDisable()
             {
                 EventBus<ESpinPressed>.Unregister(m_spinBind);
                 EventBus<ESpinCompleted>.Unregister(m_spinCompleted);
+                EventBus<EGiveUp>.Unregister(m_giveUpBind);
             }
 
             private void Initialize()
@@ -50,8 +53,16 @@
                 m_currentZoneType = WheelZoneType.DEFAULT;
                 m_spinBind = new EventBind<ESpinPressed>(StartGame);
                 m_spinCompleted = new EventBind<ESpinCompleted>(OnSpinCompleted);
+                m_giveUpBind = new EventBind<EGiveUp>(OnGiveUp);
                 m_provider = Storage<GameplayStorage>.Instance.WheelItemCollectionProvider;
                 m_qualityProcessor = new WheelGameQualityProcessor();
+            }
+
+            private void OnGiveUp(EGiveUp obj)
+            {
+                m_currentZoneIndex = 0;
+                m_currentZoneType = WheelZoneType.DEFAULT;
+                PrepareGame();
             }
 
             private void PrepareGame()
@@ -72,7 +83,7 @@
             {
                 if (m_currentSelected.Item.Type == ItemType.Bomb)
                 {
-                    
+                    EventBus<EBombExplode>.Raise(new EBombExplode());
                 }
                 else
                 {
