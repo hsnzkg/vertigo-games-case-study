@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Project.Scripts.Game.WheelGame.Data.Item;
 using UnityEngine;
 using Random = System.Random;
@@ -32,7 +33,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
             m_random = new Random(m_seed);
         }
 
-        private void Fill(WheelZoneType zone)
+        private void Fill(WheelZoneType zone, ItemQuality targetQuality)
         {
             if (m_zones == null || m_zones.Length == 0) return;
             if (m_itemBuffer == null || m_itemBuffer.Length != m_count)
@@ -59,15 +60,62 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
                 return;
             }
 
+            List<WheelItemEntry> validEntries = new();
+            List<WheelItemEntry> bombEntries = new();
+            
+            foreach(WheelItemEntry entry in targetZone.Entries)
+            {
+                if (entry.Type == ItemType.Bomb)
+                {
+                    bombEntries.Add(entry);
+                }
+                
+                if (entry.Quality == targetQuality && entry.Type != ItemType.Bomb)
+                {
+                    validEntries.Add(entry);
+                }
+            }
+            
+            if (validEntries.Count == 0)
+            {
+                foreach(WheelItemEntry entry in targetZone.Entries)
+                {
+                    if (entry.Type != ItemType.Bomb)
+                    {
+                        validEntries.Add(entry);
+                    }
+                }
+
+                if (validEntries.Count == 0)
+                {
+                    validEntries.AddRange(targetZone.Entries);
+                }
+            }
+
+            bool requireBomb = zone != WheelZoneType.SAFE && zone != WheelZoneType.SUPER;
+            int bombIndex = -1;
+            
+            if (requireBomb && bombEntries.Count > 0 && m_count > 0)
+            {
+                bombIndex = m_random.Next(0, m_count);
+            }
+
             for (int i = 0; i < m_count; i++)
             {
-                int randomIndex = m_random.Next(0, targetZone.Entries.Length);
-                WheelItemEntry entry = targetZone.Entries[randomIndex];
-                m_itemBuffer[i] = new WheelItemResult(new WheelItemBase(entry.Type, entry.Sprite,entry.Quality),entry.ProvidableAmounts[m_random.Next(0,entry.ProvidableAmounts.Length)]);
+                if (i == bombIndex)
+                {
+                    WheelItemEntry bombEntry = bombEntries[m_random.Next(0, bombEntries.Count)];
+                    m_itemBuffer[i] = new WheelItemResult(new WheelItemBase(bombEntry.Id,bombEntry.Type, bombEntry.Sprite, bombEntry.Quality), bombEntry.ProvidableAmounts[m_random.Next(0, bombEntry.ProvidableAmounts.Length)]);
+                }
+                else
+                {
+                    WheelItemEntry entry = validEntries[m_random.Next(0, validEntries.Count)];
+                    m_itemBuffer[i] = new WheelItemResult(new WheelItemBase(entry.Id,entry.Type, entry.Sprite, entry.Quality), entry.ProvidableAmounts[m_random.Next(0, entry.ProvidableAmounts.Length)]);
+                }
             }
         }
 
-        public WheelItemResult[] Provide(WheelZoneType zoneType, int seed = -1)
+        public WheelItemResult[] Provide(WheelZoneType zoneType, ItemQuality targetQuality = ItemQuality.Common, int seed = -1)
         {
             if (seed == -1)
             {
@@ -79,7 +127,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
             }
             
             m_random = new Random(m_seed);
-            Fill(zoneType);
+            Fill(zoneType, targetQuality);
             
             return m_itemBuffer;
         }

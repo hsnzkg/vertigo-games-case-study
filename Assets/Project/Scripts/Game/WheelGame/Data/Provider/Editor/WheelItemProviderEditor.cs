@@ -1,3 +1,4 @@
+using Project.Scripts.Game.WheelGame.Data.Item;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider.Editor
     public class WheelItemProviderEditor : UnityEditor.Editor
     {
         private WheelZoneType m_selectedZoneType;
+        private ItemQuality m_selectedQuality;
         private bool m_foldout;
         private int m_seed;
 
@@ -18,12 +20,13 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider.Editor
             if (m_foldout)
             {
                 m_selectedZoneType = (WheelZoneType)EditorGUILayout.EnumPopup("Zone Type", m_selectedZoneType);
+                m_selectedQuality = (ItemQuality)EditorGUILayout.EnumPopup("Target Quality", m_selectedQuality);
                 m_seed = EditorGUILayout.IntField("Seed", m_seed);
 
                 if (GUILayout.Button("Generate"))
                 {
                     WheelItemProvider provider = (WheelItemProvider)target;
-                    WheelItemResult[] results = provider.Provide(m_selectedZoneType, m_seed);
+                    WheelItemResult[] results = provider.Provide(m_selectedZoneType, m_selectedQuality, m_seed);
 
                     Debug.Log($"[WheelItemProvider] Generated items for Zone: {m_selectedZoneType}");
 
@@ -31,12 +34,11 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider.Editor
                     {
                         for (int i = 0; i < results.Length; i++)
                         {
-                            var result = results[i];
-
+                            WheelItemResult result = results[i];
                             if (result.Item != null)
-                                Debug.Log($"Item[{i}]: Id = {result.Item.Type} Amount = {result.Amount}");
-                            else
-                                Debug.Log($"Item[{i}]: null (Empty)");
+                            {
+                                Debug.Log($"Item[{i}]: Id = {result.Item.Id} Type = {result.Item.Type} Amount = {result.Amount}");
+                            }
                         }
                     }
                     else

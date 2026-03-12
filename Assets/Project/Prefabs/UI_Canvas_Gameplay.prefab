@@ -807,11 +807,12 @@ MonoBehaviour:
   m_wheelImage: {fileID: 3521192556718693831}
   m_wheelTitle: {fileID: 56488372201999742}
   m_spinButton: {fileID: 6999450485596663759}
+  m_withdrawButton: {fileID: 8453119864562594724}
   m_itemCount: 8
   m_radius: 142.5
   m_rotateDuration: 3
   m_rotateEase: 19
-  m_maxTurnCount: 0
+  m_maxExtraTurnCount: 0
   m_zoneBlocks:
   - Zone: 0
     ZonePrefix: BRONZE

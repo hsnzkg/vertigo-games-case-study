@@ -29,6 +29,9 @@ namespace Project.Scripts.UI.Wheel
         private Button m_spinButton;
 
         [SerializeField]
+        private Button m_withdrawButton;
+        
+        [SerializeField]
         private int m_itemCount;
 
         [SerializeField]
@@ -52,6 +55,7 @@ namespace Project.Scripts.UI.Wheel
         private float m_currentAngle;
         public event Action SpinComplete;
         public event Action SpinPress;
+        public event Action WithdrawPress;
 
         private void OnDrawGizmos()
         {
@@ -93,11 +97,13 @@ namespace Project.Scripts.UI.Wheel
         protected override void OnEnable()
         {
             m_spinButton.onClick.AddListener(OnSpinPressed);
+            m_withdrawButton.onClick.AddListener(OnWithdrawPressed);
         }
 
         protected override void OnDisable()
         {
             m_spinButton.onClick.RemoveListener(OnSpinPressed);
+            m_withdrawButton.onClick.RemoveListener(OnWithdrawPressed);
         }
 
         protected override void OnDestroy()
@@ -113,9 +119,19 @@ namespace Project.Scripts.UI.Wheel
             m_spinButton.interactable = value;
         }
 
+        public void SetWithDrawButtonInteractivity(bool value)
+        {
+            m_withdrawButton.interactable = value;
+        }
+
         private void OnSpinPressed()
         {
             SpinPress?.Invoke();
+        }
+
+        private void OnWithdrawPressed()
+        {
+            WithdrawPress?.Invoke();
         }
 
         private void CreateItemElements()

@@ -1,4 +1,4 @@
-﻿using EventBus.Runtime;
+using EventBus.Runtime;
 using Project.Scripts.EventBus.Events.Wheel.Game;
 using Project.Scripts.EventBus.Events.Wheel.UI;
 using Project.Scripts.Game.WheelGame.Data.Item;
@@ -14,6 +14,7 @@ namespace Project.Scripts.Game.WheelGame
         private int m_selectedIndex;
         private int m_currentZoneIndex;
         private IWheelItemCollectionProvider m_provider;
+        private IQualityProgressCalculator m_qualityProcessor;
         private WheelZoneType m_currentZoneType;
         private WheelItemResult[] m_wheelBag;
         private WheelItemResult m_currentSelected;
@@ -49,11 +50,13 @@ namespace Project.Scripts.Game.WheelGame
             m_spinBind = new EventBind<ESpinPressed>(StartGame);
             m_spinCompleted = new EventBind<ESpinCompleted>(OnSpinCompleted);
             m_provider = Storage<GameplayStorage>.Instance.WheelItemCollectionProvider;
+            m_qualityProcessor = new WheelGameQualityProcessor();
         }
 
         private void PrepareGame()
         {
-            m_wheelBag = m_provider.Provide(m_currentZoneType);
+            ItemQuality quality = m_qualityProcessor.CalculateQuality(m_currentZoneIndex);
+            m_wheelBag = m_provider.Provide(m_currentZoneType, quality);
             EventBus<EPrepareGame>.Raise(new EPrepareGame(m_wheelBag,m_currentZoneType));
         }
 

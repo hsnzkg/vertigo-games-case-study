@@ -16,20 +16,83 @@ MonoBehaviour:
   - Type: 0
     Entries:
     - Id: 0
-      Sprite: {fileID: 21300000, guid: 97d60988af619ee4c856c79224a41cfd, type: 3}
-      ProvidableAmounts: 0100000003000000
+      Type: 1
+      Sprite: {fileID: 21300000, guid: 6b66080ee0f57c145ade97068f11817c, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
     - Id: 1
-      Sprite: {fileID: 21300000, guid: bb6b69867afa61544b9bb25168b87eb1, type: 3}
-      ProvidableAmounts: 0100000003000000
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 3586e843680ca5c478d41e9a84ebc2bb, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0a0000003200000064000000
+    - Id: 1
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 3586e843680ca5c478d41e9a84ebc2bb, type: 3}
+      Quality: 1
+      ProvidableAmounts: 64000000fa000000f4010000
+    - Id: 1
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 3586e843680ca5c478d41e9a84ebc2bb, type: 3}
+      Quality: 2
+      ProvidableAmounts: e8030000dc050000d0070000
+    - Id: 2
+      Type: 0
+      Sprite: {fileID: 21300000, guid: cb0c858b43d1faa4fadec470425a5f51, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0a0000003200000064000000
+    - Id: 2
+      Type: 0
+      Sprite: {fileID: 21300000, guid: cb0c858b43d1faa4fadec470425a5f51, type: 3}
+      Quality: 1
+      ProvidableAmounts: 64000000fa000000f4010000
+    - Id: 2
+      Type: 0
+      Sprite: {fileID: 21300000, guid: cb0c858b43d1faa4fadec470425a5f51, type: 3}
+      Quality: 2
+      ProvidableAmounts: e8030000dc050000d0070000
   - Type: 1
-    Entries:
-    - Id: 1
-      Sprite: {fileID: 0}
-      ProvidableAmounts: 0100000005000000
+    Entries: []
   - Type: 2
     Entries:
-    - Id: 2
-      Sprite: {fileID: 0}
-      ProvidableAmounts: 0d00000019000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: ba46f1eccdf0f2a4baaa4e8a23c1be1f, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 47904c1d3d10baa44bf34bebbc6c9799, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 389922216cf20e840b322cc18ed5bcc5, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 9b365b9437b8285409dc290091f5fa62, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 782214e2b20b6ec4882b61e0136fe99f, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 7a905c01412cb0143b03df5b372a6221, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 8ca6fe19f533da84385ef0909e089aac, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
+    - Id: 0
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 28557e02bc94b8e4a92e81630c2ab4b0, type: 3}
+      Quality: 0
+      ProvidableAmounts: 01000000
   m_count: 8
-  m_seed: 304514268
+  m_seed: 88584977

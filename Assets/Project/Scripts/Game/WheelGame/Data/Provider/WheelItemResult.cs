@@ -1,4 +1,4 @@
-﻿using Project.Scripts.Game.WheelGame.Data.Item;
+using Project.Scripts.Game.WheelGame.Data.Item;
 
 namespace Project.Scripts.Game.WheelGame.Data.Provider
 {

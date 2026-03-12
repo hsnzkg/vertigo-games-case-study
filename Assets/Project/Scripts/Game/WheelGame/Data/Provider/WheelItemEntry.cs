@@ -7,6 +7,7 @@ namespace Project.Scripts.Game.WheelGame.Data.Provider
     [Serializable]
     public struct WheelItemEntry
     {
+        public int Id;
         public ItemType Type;
         public Sprite Sprite;
         public ItemQuality Quality;

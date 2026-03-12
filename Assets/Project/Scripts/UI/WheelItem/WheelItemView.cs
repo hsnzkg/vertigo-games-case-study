@@ -10,9 +10,13 @@ namespace Project.Scripts.UI.WheelItem
         [SerializeField] private Image m_itemImage;
         [SerializeField] private TextMeshProUGUI m_itemAmountText;
 
-        public void ChangeItem(Sprite image, int amount)
+        public void ChangeItemImage(Sprite image)
         {
             m_itemImage.sprite = image;
+        }
+
+        public void ChangeAmount(int amount)
+        {
             m_itemAmountText.text = GetAmountText(amount);
         }
 

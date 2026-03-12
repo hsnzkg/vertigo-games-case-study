@@ -1,6 +1,8 @@
-﻿using EventBus.Runtime;
+﻿using System.Collections.Generic;
+using EventBus.Runtime;
 using Project.Scripts.EventBus.Events.Wheel.Game;
 using Project.Scripts.EventBus.Events.Wheel.UI;
+using Project.Scripts.Game.WheelGame.Data.Provider;
 using Project.Scripts.UI.Core;
 
 namespace Project.Scripts.UI.Wheel
@@ -17,7 +19,11 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Enable()
         {
+            Model.CurrentZoneType.OnChanged += OnCurrentZoneChanged;
+            Model.CurrentWheelItems.OnChanged += OnWheelItemsChanged;
+            
             View.SpinPress += OnSpinPressed;
+            View.WithdrawPress += OnWithDrawPressed;
             View.SpinComplete += OnSpinCompleted;
             EventBus<EPrepareGame>.Register(m_prepareGameBind);
             EventBus<EGameStart>.Register(m_gameStartBind);
@@ -25,24 +31,48 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Disable()
         {
+            Model.CurrentZoneType.OnChanged -= OnCurrentZoneChanged;
+            Model.CurrentWheelItems.OnChanged -= OnWheelItemsChanged;
+            
             View.SpinPress -= OnSpinPressed;
+            View.WithdrawPress -= OnWithDrawPressed;
+            View.SpinComplete -= OnSpinCompleted;
             EventBus<EPrepareGame>.Unregister(m_prepareGameBind);
             EventBus<EGameStart>.Unregister(m_gameStartBind);
         }
 
+        private void OnWheelItemsChanged(IReadOnlyList<WheelItemResult> result)
+        {
+            for (int i = 0; i < result.Count; i++)
+            {
+                View.ChangeItem(i, result[i]);
+            }
+        }
+
         private void OnGamePrepare(EPrepareGame obj)
         {
-            View.ChangeWheelZone(obj.ZoneType);
+            Model.CurrentZoneType.Set(obj.ZoneType);
             for (int i = 0; i < obj.Result.Length; i++)
             {
-                View.ChangeItem(i, obj.Result[i]);
+                Model.CurrentWheelItems.ReplaceAll(obj.Result);
             }
+        }
+
+        private void OnCurrentZoneChanged(WheelZoneType zoneType)
+        {
+            View.SetWithDrawButtonInteractivity(zoneType is WheelZoneType.SAFE or WheelZoneType.SUPER);
+            View.ChangeWheelZone(zoneType);
         }
 
         private void OnSpinPressed()
         {
+            View.SetWithDrawButtonInteractivity(false);
             View.SetButtonInteractivity(false);
             EventBus<ESpinPressed>.Raise(new ESpinPressed());
+        }
+
+        private void OnWithDrawPressed()
+        {
         }
 
         private void OnGameStart(EGameStart obj)
