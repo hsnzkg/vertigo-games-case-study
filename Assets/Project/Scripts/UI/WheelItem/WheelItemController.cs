@@ -24,8 +24,8 @@ namespace Project.Scripts.UI.WheelItem
 
         public void ChangeItem(WheelItemResult wheelItemResult)
         {
-            Model.Item.Set(wheelItemResult.Item);
-            Model.Amount.Set(wheelItemResult.Amount);
+            Model.Item.Value = wheelItemResult.Item;
+            Model.Amount.Value = wheelItemResult.Amount;
         }
 
         private void OnAmountChanged(int obj)

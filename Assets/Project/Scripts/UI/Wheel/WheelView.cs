@@ -30,7 +30,7 @@ namespace Project.Scripts.UI.Wheel
 
         [SerializeField]
         private Button m_withdrawButton;
-        
+
         [SerializeField]
         private int m_itemCount;
 
@@ -48,6 +48,15 @@ namespace Project.Scripts.UI.Wheel
 
         [SerializeField]
         private WheelZoneBlock[] m_zoneBlocks;
+
+        [SerializeField]
+        private TextMeshProUGUI m_currentZoneIndexText;
+
+        [SerializeField]
+        private TextMeshProUGUI m_safeZoneIndexText;
+
+        [SerializeField]
+        private TextMeshProUGUI m_superZoneIndexText;
 
         private WheelItemSystem[] m_itemTargets;
         private Vector2 m_itemAABBMag;
@@ -122,6 +131,21 @@ namespace Project.Scripts.UI.Wheel
         public void SetWithDrawButtonInteractivity(bool value)
         {
             m_withdrawButton.interactable = value;
+        }
+
+        public void SetCurrentZoneText(int index)
+        {
+            m_currentZoneIndexText.text = $"{index}";
+        }
+        
+        public void SetSafeZoneText(int index)
+        {
+            m_safeZoneIndexText.text = $"{index}";
+        }
+        
+        public void SetSuperZoneText(int index)
+        {
+            m_superZoneIndexText.text = $"{index}";
         }
 
         private void OnSpinPressed()

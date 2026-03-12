@@ -7,11 +7,13 @@ namespace Project.Scripts.EventBus.Events.Wheel.Game
     {
         public readonly WheelItemResult[] Result;
         public readonly WheelZoneType ZoneType;
+        public readonly int ZoneIndex;
 
-        public EPrepareGame(WheelItemResult[] wheelBag, WheelZoneType zoneType)
+        public EPrepareGame(WheelItemResult[] wheelBag, WheelZoneType zoneType,int zoneIndex)
         {
             Result = wheelBag;
             ZoneType = zoneType;
+            ZoneIndex = zoneIndex;
         }
     }
 }

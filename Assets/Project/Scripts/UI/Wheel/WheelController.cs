@@ -4,6 +4,7 @@ using Project.Scripts.EventBus.Events.Wheel.Game;
 using Project.Scripts.EventBus.Events.Wheel.UI;
 using Project.Scripts.Game.WheelGame.Data.Provider;
 using Project.Scripts.UI.Core;
+using UnityEngine;
 
 namespace Project.Scripts.UI.Wheel
 {
@@ -19,24 +20,30 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Enable()
         {
+            Debug.Log("Enable Wheel Controller");
             Model.CurrentZoneType.OnChanged += OnCurrentZoneChanged;
             Model.CurrentWheelItems.OnChanged += OnWheelItemsChanged;
-            
+            Model.CurrentZoneIndex.OnChanged += OnZoneIndexChanged;
+
             View.SpinPress += OnSpinPressed;
             View.WithdrawPress += OnWithDrawPressed;
             View.SpinComplete += OnSpinCompleted;
+
             EventBus<EPrepareGame>.Register(m_prepareGameBind);
             EventBus<EGameStart>.Register(m_gameStartBind);
         }
 
         public override void Disable()
         {
+            Debug.Log("Disable Wheel Controller");
             Model.CurrentZoneType.OnChanged -= OnCurrentZoneChanged;
             Model.CurrentWheelItems.OnChanged -= OnWheelItemsChanged;
-            
+            Model.CurrentZoneIndex.OnChanged -= OnZoneIndexChanged;
+
             View.SpinPress -= OnSpinPressed;
             View.WithdrawPress -= OnWithDrawPressed;
             View.SpinComplete -= OnSpinCompleted;
+            
             EventBus<EPrepareGame>.Unregister(m_prepareGameBind);
             EventBus<EGameStart>.Unregister(m_gameStartBind);
         }
@@ -49,9 +56,25 @@ namespace Project.Scripts.UI.Wheel
             }
         }
 
+        private void OnZoneIndexChanged(int obj)
+        {
+            Debug.Log("????");
+            Debug.Log(obj);
+            int currentZone = obj + 1;
+
+            View.SetCurrentZoneText(currentZone);
+
+            int nextSafeZone = ((currentZone / 5) + 1) * 5;
+            int nextSuperZone = ((currentZone / 30) + 1) * 30;
+
+            View.SetSafeZoneText(nextSafeZone);
+            View.SetSuperZoneText(nextSuperZone);
+        }
+
         private void OnGamePrepare(EPrepareGame obj)
         {
-            Model.CurrentZoneType.Set(obj.ZoneType);
+            Model.CurrentZoneType.Value = obj.ZoneType;
+            Model.CurrentZoneIndex.Value = obj.ZoneIndex;
             for (int i = 0; i < obj.Result.Length; i++)
             {
                 Model.CurrentWheelItems.ReplaceAll(obj.Result);

@@ -7,5 +7,6 @@ namespace Project.Scripts.UI.Wheel
     {
         public readonly Observable<WheelZoneType> CurrentZoneType = new();
         public readonly ObservableList<WheelItemResult> CurrentWheelItems = new();
+        public readonly Observable<int> CurrentZoneIndex = new();
     }
 }

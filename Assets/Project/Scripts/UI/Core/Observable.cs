@@ -21,7 +21,7 @@ namespace Project.Scripts.UI.Core
             m_value = initialValue;
         }
 
-        public void Set(T newValue)
+        private void Set(T newValue)
         {
             if (m_value is IEnumerable oldEnum && newValue is IEnumerable newEnum)
             {
