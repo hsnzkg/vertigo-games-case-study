@@ -4,6 +4,7 @@
     using Project.Scripts.EventBus.Events.Bag;
     using Project.Scripts.Game.WheelGame.Data.Item;
     using Project.Scripts.Game.WheelGame.Data.Provider;
+    using Project.Scripts.Managers;
     using Project.Scripts.Storage;
     using Storage.Runtime;
     using UnityEngine;
@@ -12,6 +13,7 @@
     {
         public class WheelGame : MonoBehaviour
         {
+            [SerializeField] private int m_startMoney;
             private int m_selectedIndex;
             private int m_currentZoneIndex;
             private IWheelItemCollectionProvider m_provider;
@@ -22,6 +24,7 @@
             private EventBind<ESpinPressed> m_spinBind;
             private EventBind<ESpinCompleted> m_spinCompleted;
             private EventBind<EGiveUp> m_giveUpBind;
+            private EventBind<ERevive> m_reviveBind;
  
             private void Awake()
             {
@@ -38,6 +41,7 @@
                 EventBus<ESpinPressed>.Register(m_spinBind);
                 EventBus<ESpinCompleted>.Register(m_spinCompleted);
                 EventBus<EGiveUp>.Register(m_giveUpBind);
+                EventBus<ERevive>.Register(m_reviveBind);
             }
  
             private void OnDisable()
@@ -45,17 +49,25 @@
                 EventBus<ESpinPressed>.Unregister(m_spinBind);
                 EventBus<ESpinCompleted>.Unregister(m_spinCompleted);
                 EventBus<EGiveUp>.Unregister(m_giveUpBind);
+                EventBus<ERevive>.Unregister(m_reviveBind);
             }
 
             private void Initialize()
             {
+                CurrencyManager.SetCurrency(m_startMoney);
                 m_currentZoneIndex = 0;
                 m_currentZoneType = WheelZoneType.DEFAULT;
                 m_spinBind = new EventBind<ESpinPressed>(StartGame);
                 m_spinCompleted = new EventBind<ESpinCompleted>(OnSpinCompleted);
                 m_giveUpBind = new EventBind<EGiveUp>(OnGiveUp);
+                m_reviveBind = new EventBind<ERevive>(OnRevive);
                 m_provider = Storage<GameplayStorage>.Instance.WheelItemCollectionProvider;
                 m_qualityProcessor = new WheelGameQualityProcessor();
+            }
+
+            private void OnRevive(ERevive obj)
+            {
+                PrepareGame();
             }
 
             private void OnGiveUp(EGiveUp obj)

@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 3412645870035644270}
   - component: {fileID: 2214188772933469947}
   m_Layer: 0
-  m_Name: UI_Text_Revive
+  m_Name: UI_Text_Revive_Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<sprite name="UI_icon_gold">250
+  m_text: '<sprite name="UI_icon_gold">0
 
     REVIVE
 
@@ -3069,6 +3069,8 @@ MonoBehaviour:
   Root: {fileID: 5930235624839150611}
   m_reviveButton: {fileID: 3093146764625857330}
   m_giveUpButton: {fileID: 4809735212433389439}
+  m_revivePrice: 250
+  m_reviveText: {fileID: 2214188772933469947}
 --- !u!1 &6228008745788727537
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using EventBus.Runtime;
 using Project.Scripts.EventBus.Events.Wheel.Game;
+using Project.Scripts.Managers;
 using Project.Scripts.UI.Core;
 
 namespace Project.Scripts.UI.RevivePanel
@@ -38,13 +39,19 @@ namespace Project.Scripts.UI.RevivePanel
 
         private void OnRevivePressed()
         {
-            View.SetInteractivity(false);
-            View.Close();
+            if (CurrencyManager.SubtractCurrency(View.RevivePrice))
+            {
+                View.SetGiveUpButtonInteractivity(false);
+                View.SetReviveButtonInteractivity(false);
+                EventBus<ERevive>.Raise(new ERevive());
+                View.Close();
+            }
         }
 
         private void OnGiveUpPressed()
         {
-            View.SetInteractivity(false);
+            View.SetGiveUpButtonInteractivity(false);
+            View.SetReviveButtonInteractivity(false);
             EventBus<EGiveUp>.Raise(new EGiveUp());
             View.Close();
         }
@@ -52,6 +59,8 @@ namespace Project.Scripts.UI.RevivePanel
         private void OnBombExplode()
         {
             View.Open();
+            bool canAfford = CurrencyManager.HasCurrency(View.RevivePrice);
+            View.SetReviveButtonInteractivity(canAfford);
         }
     }
 }
