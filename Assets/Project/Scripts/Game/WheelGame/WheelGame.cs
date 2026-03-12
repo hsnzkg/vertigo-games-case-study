@@ -1,6 +1,7 @@
     using EventBus.Runtime;
     using Project.Scripts.EventBus.Events.Wheel.Game;
     using Project.Scripts.EventBus.Events.Wheel.UI;
+    using Project.Scripts.EventBus.Events.Bag;
     using Project.Scripts.Game.WheelGame.Data.Item;
     using Project.Scripts.Game.WheelGame.Data.Provider;
     using Project.Scripts.Storage;
@@ -75,6 +76,7 @@
                 }
                 else
                 {
+                    EventBus<EAddItem>.Raise(new EAddItem(m_currentSelected.Item, m_currentSelected.Amount));
                     m_currentZoneIndex++;
                     m_currentZoneType = GetZoneTypeFromIndex(m_currentZoneIndex);
                     PrepareGame();
