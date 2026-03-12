@@ -1639,8 +1639,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8505429685760764481}
   - component: {fileID: 3200361113786621562}
+  - component: {fileID: 8631190264872831911}
+  - component: {fileID: 8392781743537015259}
   m_Layer: 0
-  m_Name: UI_Rect_Round_View_Panel
+  m_Name: UI_Rect_Zone_Indicator_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1695,6 +1697,35 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8631190264872831911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079554225947982163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4562371b4e56f498042d0295302611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  View: {fileID: 8392781743537015259}
+--- !u!114 &8392781743537015259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079554225947982163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac0c61fcaac06b48bc5af87cd7cac35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Root: {fileID: 8505429685760764481}
+  m_currentZoneIndexText: {fileID: 482429336798692671}
+  m_safeZoneIndexText: {fileID: 1305918710324005140}
+  m_superZoneIndexText: {fileID: 8544728299619653776}
 --- !u!1 &4410415360731853051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,6 +2106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Root: {fileID: 4041959416326250709}
+  m_maxExtraTurnCount: 0
   m_itemPrefab: {fileID: 4021404444708438963, guid: 9ab0cdfaef693d3408cd1a37410a4d32, type: 3}
   m_wheelRect: {fileID: 4407585803101531853}
   m_wheelImage: {fileID: 3521192556718693831}
@@ -2086,7 +2118,6 @@ MonoBehaviour:
   m_radius: 142.5
   m_rotateDuration: 1.5
   m_rotateEase: 19
-  m_maxExtraTurnCount: 0
   m_zoneBlocks:
   - Zone: 0
     ZonePrefix: BRONZE
@@ -2100,9 +2131,6 @@ MonoBehaviour:
     ZonePrefix: GOLD
     WheelSprite: {fileID: 21300000, guid: fb5ccaf18bf304841a14ffaeccb066b5, type: 3}
     IndicatorSprite: {fileID: 21300000, guid: f341f2151189db7489a2720e1f883e94, type: 3}
-  m_currentZoneIndexText: {fileID: 482429336798692671}
-  m_safeZoneIndexText: {fileID: 1305918710324005140}
-  m_superZoneIndexText: {fileID: 8544728299619653776}
 --- !u!1 &6228008745788727537
 GameObject:
   m_ObjectHideFlags: 0

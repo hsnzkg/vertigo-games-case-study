@@ -14,6 +14,9 @@ namespace Project.Scripts.UI.Wheel
     public class WheelView : ViewBase
     {
         [SerializeField]
+        private int m_maxExtraTurnCount;
+
+        [SerializeField]
         private WheelItemSystem m_itemPrefab;
 
         [SerializeField]
@@ -47,19 +50,7 @@ namespace Project.Scripts.UI.Wheel
         private Ease m_rotateEase;
 
         [SerializeField]
-        private int m_maxExtraTurnCount;
-
-        [SerializeField]
         private WheelZoneBlock[] m_zoneBlocks;
-
-        [SerializeField]
-        private TextMeshProUGUI m_currentZoneIndexText;
-
-        [SerializeField]
-        private TextMeshProUGUI m_safeZoneIndexText;
-
-        [SerializeField]
-        private TextMeshProUGUI m_superZoneIndexText;
 
         private WheelItemSystem[] m_itemTargets;
         private Vector2 m_itemAABBMag;
@@ -136,20 +127,6 @@ namespace Project.Scripts.UI.Wheel
             m_withdrawButton.interactable = value;
         }
 
-        public void SetCurrentZoneText(int index)
-        {
-            m_currentZoneIndexText.text = $"{index}";
-        }
-
-        public void SetSafeZoneText(int index)
-        {
-            m_safeZoneIndexText.text = $"{index}";
-        }
-
-        public void SetSuperZoneText(int index)
-        {
-            m_superZoneIndexText.text = $"{index}";
-        }
 
         private void OnSpinPressed()
         {
@@ -224,14 +201,15 @@ namespace Project.Scripts.UI.Wheel
             m_wheelTitle.text = $"{prefix} Spin";
         }
 
-        public void Rotate(float targetDegree, int extraSpinCount = -1, SpinDirection direction = SpinDirection.Clockwise)
+        private void Rotate(float targetDegree, bool extraSpin = true, SpinDirection direction = SpinDirection.Clockwise)
         {
+            int extraSpinCount = 0;
             if (m_rotateTween is { active: true })
             {
                 m_rotateTween.Kill();
             }
 
-            if (extraSpinCount == -1)
+            if (extraSpin)
             {
                 extraSpinCount = Random.Range(1, m_maxExtraTurnCount + 1);
             }
@@ -258,10 +236,10 @@ namespace Project.Scripts.UI.Wheel
             m_rotateTween.Play();
         }
 
-        public void Rotate(int index, int extraSpinCount = -1, SpinDirection direction = SpinDirection.Clockwise)
+        public void Rotate(int index, bool extraSpin = true, SpinDirection direction = SpinDirection.Clockwise)
         {
             float targetDegree = 360f / m_itemTargets.Length * index;
-            Rotate(targetDegree, extraSpinCount, direction);
+            Rotate(targetDegree, extraSpin, direction);
         }
 
         public void ChangeItem(int index, WheelItemResult wheelItemResult)
