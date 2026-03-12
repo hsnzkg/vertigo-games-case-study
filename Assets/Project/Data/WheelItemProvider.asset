@@ -51,48 +51,83 @@ MonoBehaviour:
       Quality: 2
       ProvidableAmounts: e8030000dc050000d0070000
   - Type: 1
-    Entries: []
+    Entries:
+    - Id: 3
+      Type: 0
+      Sprite: {fileID: 21300000, guid: d24745e410ff2784bae759a24ea5f847, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 4
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 97d60988af619ee4c856c79224a41cfd, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 5
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 075d0b06d54c0b349979261e48a490ac, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 6
+      Type: 0
+      Sprite: {fileID: 21300000, guid: 873e2e8cff199354ab44e1302f3953cf, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 7
+      Type: 0
+      Sprite: {fileID: 21300000, guid: d723a5da998fd0248a68435fcd1f267a, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 8
+      Type: 0
+      Sprite: {fileID: 21300000, guid: ca89b4f4c90ade44fa7ccfad41c6ee27, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
+    - Id: 9
+      Type: 0
+      Sprite: {fileID: 21300000, guid: bb6b69867afa61544b9bb25168b87eb1, type: 3}
+      Quality: 0
+      ProvidableAmounts: 0100000002000000
   - Type: 2
     Entries:
-    - Id: 0
+    - Id: 10
       Type: 0
       Sprite: {fileID: 21300000, guid: ba46f1eccdf0f2a4baaa4e8a23c1be1f, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 11
       Type: 0
       Sprite: {fileID: 21300000, guid: 47904c1d3d10baa44bf34bebbc6c9799, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 12
       Type: 0
       Sprite: {fileID: 21300000, guid: 389922216cf20e840b322cc18ed5bcc5, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 13
       Type: 0
       Sprite: {fileID: 21300000, guid: 9b365b9437b8285409dc290091f5fa62, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 14
       Type: 0
       Sprite: {fileID: 21300000, guid: 782214e2b20b6ec4882b61e0136fe99f, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 15
       Type: 0
       Sprite: {fileID: 21300000, guid: 7a905c01412cb0143b03df5b372a6221, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 16
       Type: 0
       Sprite: {fileID: 21300000, guid: 8ca6fe19f533da84385ef0909e089aac, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
-    - Id: 0
+    - Id: 17
       Type: 0
       Sprite: {fileID: 21300000, guid: 28557e02bc94b8e4a92e81630c2ab4b0, type: 3}
       Quality: 0
       ProvidableAmounts: 01000000
   m_count: 8
-  m_seed: 88584977
+  m_seed: 444407982

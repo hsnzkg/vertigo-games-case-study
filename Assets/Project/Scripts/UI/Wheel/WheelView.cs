@@ -23,6 +23,9 @@ namespace Project.Scripts.UI.Wheel
         private Image m_wheelImage;
 
         [SerializeField]
+        private Image m_indicatorImage;
+
+        [SerializeField]
         private TextMeshProUGUI m_wheelTitle;
 
         [SerializeField]
@@ -137,12 +140,12 @@ namespace Project.Scripts.UI.Wheel
         {
             m_currentZoneIndexText.text = $"{index}";
         }
-        
+
         public void SetSafeZoneText(int index)
         {
             m_safeZoneIndexText.text = $"{index}";
         }
-        
+
         public void SetSuperZoneText(int index)
         {
             m_superZoneIndexText.text = $"{index}";
@@ -211,6 +214,11 @@ namespace Project.Scripts.UI.Wheel
             m_wheelImage.sprite = image;
         }
 
+        private void ChangeIndicatorImage(Sprite image)
+        {
+            m_indicatorImage.sprite = image;
+        }
+
         private void ChangeWheelTitle(string prefix)
         {
             m_wheelTitle.text = $"{prefix} Spin";
@@ -266,7 +274,8 @@ namespace Project.Scripts.UI.Wheel
         public void ChangeWheelZone(WheelZoneType zoneType)
         {
             WheelZoneBlock block = GetZoneBlock(zoneType);
-            ChangeWheelImage(block.Sprite);
+            ChangeWheelImage(block.WheelSprite);
+            ChangeIndicatorImage(block.IndicatorSprite);
             ChangeWheelTitle(block.ZonePrefix);
         }
     }

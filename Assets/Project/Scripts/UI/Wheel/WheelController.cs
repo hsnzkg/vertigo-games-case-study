@@ -20,7 +20,6 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Enable()
         {
-            Debug.Log("Enable Wheel Controller");
             Model.CurrentZoneType.OnChanged += OnCurrentZoneChanged;
             Model.CurrentWheelItems.OnChanged += OnWheelItemsChanged;
             Model.CurrentZoneIndex.OnChanged += OnZoneIndexChanged;
@@ -35,7 +34,6 @@ namespace Project.Scripts.UI.Wheel
 
         public override void Disable()
         {
-            Debug.Log("Disable Wheel Controller");
             Model.CurrentZoneType.OnChanged -= OnCurrentZoneChanged;
             Model.CurrentWheelItems.OnChanged -= OnWheelItemsChanged;
             Model.CurrentZoneIndex.OnChanged -= OnZoneIndexChanged;
@@ -58,8 +56,6 @@ namespace Project.Scripts.UI.Wheel
 
         private void OnZoneIndexChanged(int obj)
         {
-            Debug.Log("????");
-            Debug.Log(obj);
             int currentZone = obj + 1;
 
             View.SetCurrentZoneText(currentZone);

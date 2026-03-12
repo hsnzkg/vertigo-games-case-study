@@ -9,6 +9,7 @@ namespace Project.Scripts.UI.Wheel
     {
         public WheelZoneType Zone;
         public string ZonePrefix;
-        public Sprite Sprite;
+        public Sprite WheelSprite;
+        public Sprite IndicatorSprite;
     }
 }

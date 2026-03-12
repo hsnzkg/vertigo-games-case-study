@@ -55,7 +55,6 @@
 
             private void PrepareGame()
             {
-                Debug.Log("Prepare Game");
                 ItemQuality quality = m_qualityProcessor.CalculateQuality(m_currentZoneIndex);
                 m_wheelBag = m_provider.Provide(m_currentZoneType, quality);
                 EventBus<EPrepareGame>.Raise(new EPrepareGame(m_wheelBag,m_currentZoneType,m_currentZoneIndex));

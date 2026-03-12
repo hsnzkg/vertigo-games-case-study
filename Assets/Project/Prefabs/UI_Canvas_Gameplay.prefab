@@ -640,8 +640,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281980671
-  m_fontColor: {r: 1, g: 0.84003, b: 0.2216981, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1359,8 +1359,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f341f2151189db7489a2720e1f883e94, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cf3e0e67c9ef04945a2e721fd6c79897, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2078,24 +2078,28 @@ MonoBehaviour:
   m_itemPrefab: {fileID: 4021404444708438963, guid: 9ab0cdfaef693d3408cd1a37410a4d32, type: 3}
   m_wheelRect: {fileID: 4407585803101531853}
   m_wheelImage: {fileID: 3521192556718693831}
+  m_indicatorImage: {fileID: 8081554921130509855}
   m_wheelTitle: {fileID: 56488372201999742}
   m_spinButton: {fileID: 6999450485596663759}
   m_withdrawButton: {fileID: 8453119864562594724}
   m_itemCount: 8
   m_radius: 142.5
-  m_rotateDuration: 3
+  m_rotateDuration: 1.5
   m_rotateEase: 19
   m_maxExtraTurnCount: 0
   m_zoneBlocks:
   - Zone: 0
     ZonePrefix: BRONZE
-    Sprite: {fileID: 21300000, guid: be82e33c77ebe49489574027bba94eb0, type: 3}
+    WheelSprite: {fileID: 21300000, guid: be82e33c77ebe49489574027bba94eb0, type: 3}
+    IndicatorSprite: {fileID: 21300000, guid: cf3e0e67c9ef04945a2e721fd6c79897, type: 3}
   - Zone: 1
     ZonePrefix: SILVER
-    Sprite: {fileID: 21300000, guid: 78bc6fdd7ba99344ebd03d49523025c5, type: 3}
+    WheelSprite: {fileID: 21300000, guid: 78bc6fdd7ba99344ebd03d49523025c5, type: 3}
+    IndicatorSprite: {fileID: 21300000, guid: 72f06e38fea10254f9a65081452f64b0, type: 3}
   - Zone: 2
     ZonePrefix: GOLD
-    Sprite: {fileID: 21300000, guid: fb5ccaf18bf304841a14ffaeccb066b5, type: 3}
+    WheelSprite: {fileID: 21300000, guid: fb5ccaf18bf304841a14ffaeccb066b5, type: 3}
+    IndicatorSprite: {fileID: 21300000, guid: f341f2151189db7489a2720e1f883e94, type: 3}
   m_currentZoneIndexText: {fileID: 482429336798692671}
   m_safeZoneIndexText: {fileID: 1305918710324005140}
   m_superZoneIndexText: {fileID: 8544728299619653776}
