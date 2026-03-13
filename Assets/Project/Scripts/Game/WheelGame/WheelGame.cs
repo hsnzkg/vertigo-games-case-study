@@ -1,6 +1,7 @@
     using EventBus.Runtime;
     using Project.Scripts.EventBus.Events.Wheel.Game;
     using Project.Scripts.EventBus.Events.Wheel.UI;
+    using Project.Scripts.EventBus.Events.Wheel;
     using Project.Scripts.EventBus.Events.Bag;
     using Project.Scripts.Game.WheelGame.Data.Item;
     using Project.Scripts.Game.WheelGame.Data.Provider;
@@ -25,6 +26,7 @@
             private EventBind<ESpinCompleted> m_spinCompleted;
             private EventBind<EGiveUp> m_giveUpBind;
             private EventBind<ERevive> m_reviveBind;
+            private EventBind<EWithdraw> m_withdrawBind;
  
             private void Awake()
             {
@@ -42,6 +44,7 @@
                 EventBus<ESpinCompleted>.Register(m_spinCompleted);
                 EventBus<EGiveUp>.Register(m_giveUpBind);
                 EventBus<ERevive>.Register(m_reviveBind);
+                EventBus<EWithdraw>.Register(m_withdrawBind);
             }
  
             private void OnDisable()
@@ -50,6 +53,7 @@
                 EventBus<ESpinCompleted>.Unregister(m_spinCompleted);
                 EventBus<EGiveUp>.Unregister(m_giveUpBind);
                 EventBus<ERevive>.Unregister(m_reviveBind);
+                EventBus<EWithdraw>.Unregister(m_withdrawBind);
             }
 
             private void Initialize()
@@ -61,6 +65,7 @@
                 m_spinCompleted = new EventBind<ESpinCompleted>(OnSpinCompleted);
                 m_giveUpBind = new EventBind<EGiveUp>(OnGiveUp);
                 m_reviveBind = new EventBind<ERevive>(OnRevive);
+                m_withdrawBind = new EventBind<EWithdraw>(OnWithdraw);
                 m_provider = Storage<GameplayStorage>.Instance.WheelItemCollectionProvider;
                 m_qualityProcessor = new WheelGameQualityProcessor();
             }
@@ -71,6 +76,13 @@
             }
 
             private void OnGiveUp(EGiveUp obj)
+            {
+                m_currentZoneIndex = 0;
+                m_currentZoneType = WheelZoneType.DEFAULT;
+                PrepareGame();
+            }
+
+            private void OnWithdraw(EWithdraw obj)
             {
                 m_currentZoneIndex = 0;
                 m_currentZoneType = WheelZoneType.DEFAULT;

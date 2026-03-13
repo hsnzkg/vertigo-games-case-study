@@ -17,14 +17,14 @@ namespace Project.Scripts.UI.ZoneIndicator
         public override void Enable()
         {
             Debug.Log("Enable Zone Indicator Controller");
-            Model.CurrentZoneIndex.OnChanged += OnZoneIndexChanged;
+            Model.CurrentZoneIndex.Subscribe(OnZoneIndexChanged, true);
             EventBus<EPrepareGame>.Register(m_prepareGameBind);
         }
 
         public override void Disable()
         {
             Debug.Log("Disable Zone Indicator Controller");
-            Model.CurrentZoneIndex.OnChanged -= OnZoneIndexChanged;
+            Model.CurrentZoneIndex.Unsubscribe(OnZoneIndexChanged);
             EventBus<EPrepareGame>.Unregister(m_prepareGameBind);
         }
 

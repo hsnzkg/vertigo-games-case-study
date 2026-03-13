@@ -33,17 +33,26 @@ namespace Project.Scripts.UI.ZoneIndicator
 
         public void SetCurrentZoneText(int index)
         {
-            m_currentZoneIndexText.text = $"{index}";
+            if (m_currentZoneIndexText != null)
+            {
+                m_currentZoneIndexText.text = $"{index}";
+            }
         }
 
         public void SetSafeZoneText(int index)
         {
-            m_safeZoneIndexText.text = $"{index}";
+            if (m_safeZoneIndexText != null)
+            {
+                m_safeZoneIndexText.text = $"{index}";
+            }
         }
 
         public void SetSuperZoneText(int index)
         {
-            m_superZoneIndexText.text = $"{index}";
+            if (m_superZoneIndexText != null)
+            {
+                m_superZoneIndexText.text = $"{index}";
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Project.Scripts.EventBus.Events.Wheel
+using EventBus.Runtime;
+
+namespace Project.Scripts.EventBus.Events.Wheel
 {
-    public struct EWithdraw
+    public struct EWithdraw : IEvent
     {
         
     }

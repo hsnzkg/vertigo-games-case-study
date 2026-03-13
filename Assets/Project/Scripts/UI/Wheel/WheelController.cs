@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EventBus.Runtime;
+using Project.Scripts.EventBus.Events.Wheel;
 using Project.Scripts.EventBus.Events.Wheel.Game;
 using Project.Scripts.EventBus.Events.Wheel.UI;
 using Project.Scripts.Game.WheelGame.Data.Provider;
@@ -81,6 +82,7 @@ namespace Project.Scripts.UI.Wheel
         private void OnWithDrawPressed()
         {
             Model.CurrentZoneType.Value = WheelZoneType.DEFAULT;
+            EventBus<EWithdraw>.Raise(new EWithdraw());
         }
 
         private void OnGameStart(EGameStart obj)

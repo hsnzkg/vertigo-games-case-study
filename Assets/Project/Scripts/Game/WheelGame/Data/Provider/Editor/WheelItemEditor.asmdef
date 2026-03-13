@@ -1,0 +1,16 @@
+{
+    "name": "WheelItemEditor",
+    "rootNamespace": "",
+    "references": ["GUID:62a60aecdf00c6840996785c5363967f"],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
